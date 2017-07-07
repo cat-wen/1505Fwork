@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .blue{color:blue}
+        .box{
+            width:200px;
+            height:150px;
+            background:#255625;
+        }
+    </style>
+</head>
+<body ng-app="myapp">
+<div ng-controller="demo">
+    <input type="text"  ng-model="logo">
+    <p>{{logo}}</p>
+    <div class="red" ng-bind="logo"></div>
+    <ul>
+        <li ng-repeat="i in data" ng-class="{true:'red',false:'blue'}[flag]" ng-click="change($index)">{{i}}</li>
+    </ul>
+    <div class="box" ng-if="flag"></div>
+    <p>
+        <span ng-show="showing" ng-click="state()">通过</span>
+        <span class="blue" ng-hide="showing" ng-click="state()">未通过</span>
+    </p>
+
+</div>
+</body>
+<script src="common/angular.js"></script>
+<script>
+    var app=angular.module("myapp",[]);
+    app.controller("demo",function($scope){
+        $scope.name="kilop";
+        $scope.data=["11111","22222","333333","4444444"];
+        $scope.flag=false;
+        $scope.showing=true;
+        $scope.change=function(id){
+            $scope.flag=!$scope.flag
+        }
+        $scope.state=function(){
+            $scope.showing=!$scope.showing;
+        }
+    })
+</script>
+</html>
